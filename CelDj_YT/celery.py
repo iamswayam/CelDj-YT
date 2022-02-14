@@ -4,7 +4,7 @@ import os
 from celery import Celery
 from django.conf import settings
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'proj.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'CelDj_YT.settings')
 
 app = Celery('CelDj_YT')
 app.conf.enable_utc = False
