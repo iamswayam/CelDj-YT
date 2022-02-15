@@ -39,6 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'main_app',
     'django_celery_results',
+    'django_celery_beat',
+    'send_mail_app'
 ]
 
 MIDDLEWARE = [
@@ -75,12 +77,25 @@ WSGI_APPLICATION = 'CelDj_YT.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': '7668',
+            'HOST': 'localhost',
+            'PORT': 5432,
+        }
 }
+
+
 
 
 # Password validation
@@ -128,3 +143,17 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Asia/Kolkata'
 CELERY_RESULT_BACKEND = 'django-db'
+
+#CELERY BEAT
+CELERY_BEAT_SCHEDULER = 'django_celery_beat.schedulers:DatabaseScheduler'
+
+# SMTP Settings
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER ='antirapeassociation@gmail.com'
+EMAIL_HOST_PASSWORD = "ncvxnihirjecxrfu"
+DEFAULT_FROM_EMAIL = 'Celery <antirapeassociation@gmail.com>'
+
+#ncvxnihirjecxrfu
